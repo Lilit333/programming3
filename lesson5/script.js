@@ -11,21 +11,43 @@ function main() {
             socket.emit("send message", val);
         }
     }
-    button.onclick = handleSubmit;
-    function handleMessage(msg) {
-        var p = document.createElement('p');
-        p.innerText = msg;
-        chatDiv.appendChild(p);
-        input.value = "";
-    }
-  del.onclick = deleteMessages ;
-  
+    function keydownSubmit(evt) {
+        if (evt.keyCode == 13) {
+            var val = input.value;
+            if (val != "") {
+                socket.emit("send message", val);
 
-    socket.on('display message', handleMessage);
-    socket.on('dzer tagery jnjeq', deleteTags);
-    function deleteTags() {
-        
-    }
-} // main closing bracket
+            }
 
-window.onload = main;
+        }
+    }
+        window.onkeydown = keydownSubmit;
+        button.onclick = handleSubmit;
+        function handleMessage(msg) {
+            var p = document.createElement('p');
+            p.innerText = msg;
+            chatDiv.appendChild(p);
+            input.value = "";
+        }
+        socket.on('display message', handleMessage);
+
+        del.onclick = deleteMessages;
+
+        function deleteMessages() {
+            socket.emit("jnjel")
+        }
+
+        socket.on('jnjeq dzer tagery', deleteTags);
+        function deleteTags() {
+            var elements = document.getElementsByTagName('p');
+            for (var i in elements) {
+                elements[0].remove();
+                if (elements.length == 0) {
+                    break;
+                }
+            }
+            console.log
+        }
+    }
+
+    window.onload = main;

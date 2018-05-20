@@ -19,8 +19,9 @@ io.on('connection', function (socket) {
         io.sockets.emit("display message", data);
     });
 
-        socket.on("uzum em jnjel", function () {
+    socket.on("jnjel", function () {
         messages = [];
-        io.sockets.emit("jnjeq dzer tagery", );
+        io.sockets.emit("jnjeq dzer tagery");
     });
 });
+
